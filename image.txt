@@ -1,0 +1,14 @@
+if(isset($_POST['bouton']))
+{
+if($_FILES['photoprod']['error']==0)
+	{
+		copy(  $_FILES['photoprod']['tmp_name'] ,  "../images/".$_FILES['photoprod']['name']  );
+	}
+if($_FILES['photoprod']['error']==0)
+	$requete="INSERT INTO produits SET refprod='".$_POST['refprod']."', prixprod='".$_POST['prixprod']."',  descriptionprod='".$_POST['descriptionprod']."', photoprod='".$_FILES['photoprod']['name']."', famproduit_IDprod='".$_POST['famproduit_IDprod']."' , fournisseurs_idfrs ='".$_POST['fournisseurs_idfrs']."' ";
+else
+	$requete="INSERT INTO produits SET refprod='".$_POST['refprod']."', prixprod='".$_POST['prixprod']."',  descriptionprod='".$_POST['descriptionprod']."', famproduit_IDprod='".$_POST['famproduit_IDprod']."' ,fournisseurs_idfrs ='".$_POST['fournisseurs_idfrs']."' ";
+
+	$resultat=mysql_query($requete);
+header("Location:produitsGestion.php");
+}
